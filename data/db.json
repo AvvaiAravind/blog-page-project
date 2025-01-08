@@ -1,0 +1,28 @@
+{
+  "posts": [
+    {
+      "id": "e84ab432-c076-48f1-ab7d-8053c50c343c",
+      "title": "My First Post",
+      "datetime": "July 01, 2021 11:17:36 AM",
+      "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis consequatur expedita, assumenda similique non optio! Modi nesciunt excepturi corrupti atque blanditiis quo nobis, non optio quae possimus illum exercitationem ipsa!"
+    },
+    {
+      "id": "b4f10561-faae-4c1d-b20c-6e7753a693a8",
+      "title": "Modified post",
+      "datetime": "Jan 04, 2025 05:02:22 PM",
+      "body": "Modifies post for testing the newly implemented feature"
+    },
+    {
+      "id": "80ae1296-1183-470a-b8bb-3c66d147eb9a",
+      "title": "Packaging ",
+      "datetime": "Jan 04, 2025 05:17:21 PM",
+      "body": "Luggage"
+    },
+    {
+      "id": "bda10deb-c518-45d0-9057-d5a5bf460ade",
+      "title": "India",
+      "datetime": "Jan 04, 2025 05:29:52 PM",
+      "body": "kkdjsljkjldjljajj"
+    }
+  ]
+}
