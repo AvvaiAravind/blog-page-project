@@ -1,12 +1,16 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useCustomContext } from "../context/DataContext";
 
-type NavProps = {
+/* type NavProps = {
   search: string;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
-};
+}; */
 
-const Nav: React.FC<NavProps> = ({ search, setSearch }) => {
+const Nav /* : React.FC<NavProps> */ = () => {
   const navigate = useNavigate();
+
+  const { search, setSearch } = useCustomContext();
+
   return (
     <nav className="w-full bg-[#333] flex flex-col justify-start items-center">
       <form

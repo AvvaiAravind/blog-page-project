@@ -1,20 +1,55 @@
+import { AxiosError } from "axios";
 import { ReactElement } from "react";
-import { Link, useParams } from "react-router-dom";
-import { PostType } from "./App";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import axiosInstance from "../api/posts";
+import { useCustomContext } from "../context/DataContext";
 
-type PostPageProps = {
+/* type PostPageProps = {
   posts: PostType[];
   handleDelete: (id: string) => void;
   handleEdit: (id: string) => void;
-};
+}; */
 
-const PostPage = ({
-  posts,
-  handleDelete,
-  handleEdit,
-}: PostPageProps): ReactElement => {
+const PostPage = (): ReactElement => {
+  const { posts, setPosts, setEditPost } = useCustomContext();
+
   const { id } = useParams<{ id: string }>();
+
   const post = posts.find((post) => post.id === id);
+
+  const navigate = useNavigate();
+
+  // functions
+
+  const handleDelete = async (id: string): Promise<void> => {
+    try {
+      await axiosInstance.delete(`/posts/${id}`);
+      const postsList = posts.filter((post) => post.id !== id);
+      setPosts(postsList);
+      navigate("/");
+      toast.success("Post deleted successfully");
+    } catch (error) {
+      if (error instanceof AxiosError && error.response) {
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+        toast.error(`${error.response.status}: ${error.response.data}`);
+      } else if (error instanceof Error) {
+        console.log("Error", error.message);
+        toast.error(`Error: ${error.message}`);
+      }
+    }
+  };
+
+  const handleEdit = (id: string): void => {
+    const postToEdit = posts.find((post) => post.id === id);
+
+    if (postToEdit) {
+      setEditPost(postToEdit);
+      navigate(`/edit/${id}`, { state: { post: postToEdit, isEdit: true } });
+    }
+  };
 
   return (
     <main className="w-full flex-grow p-4 overflow-y-auto bg-[#fff]">
